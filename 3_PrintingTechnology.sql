@@ -12,6 +12,7 @@ CREATE TABLE PrintingTechnology
 DROP TABLE IF EXISTS PrintingTechnologyAdvantage CASCADE;
 CREATE TABLE PrintingTechnologyAdvantage
 (
+    id              smallint    GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     technologyId    smallint    NOT NULL UNIQUE,
     description     text        NOT NULL,
 
@@ -22,6 +23,7 @@ CREATE TABLE PrintingTechnologyAdvantage
 DROP TABLE IF EXISTS PrintingTechnologyDisadvantage CASCADE;
 CREATE TABLE PrintingTechnologyDisadvantage
 (
+    id              smallint    GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     technologyId    smallint    NOT NULL UNIQUE,
     description     text        NOT NULL,
 
