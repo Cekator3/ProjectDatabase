@@ -15,8 +15,8 @@ DROP TABlE IF EXISTS BaseModelSize CASCADE;
 CREATE TABLE BaseModelSize
 (
     id                  integer     GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    sizeMultiplier      real        NOT NULL,
     baseModelId         integer     NOT NULL,
+    sizeMultiplier      real        NOT NULL,
     length              integer     NOT NULL,
     width               integer     NOT NULL,
     height              integer     NOT NULL,
