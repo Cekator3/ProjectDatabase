@@ -1,4 +1,5 @@
 -- Тип ошибки модельки
+DROP TYPE IF EXISTS ModelMistakeType CASCADE;
 CREATE TYPE ModelMistakeType AS ENUM
 (
     'BaseModelMistake',
