@@ -9,9 +9,9 @@ CREATE TABLE FilamentType
     hardness            smallint    NOT NULL,
     impactResistance    smallint    NOT NULL,
     durability          smallint    NOT NULL,
-    minTemperature      smallint    NOT NULL,
-    maxTemperature      smallint    NOT NULL,
-    foodContact         boolean     NOT NULL
+    minWorkTemperature  smallint    NOT NULL,
+    maxWorkTemperature  smallint    NOT NULL,
+    foodContactAllowed  boolean     NOT NULL
 );
 
 -- Технология печати, в которой используется конкретный тип филамента.
@@ -22,6 +22,6 @@ CREATE TABLE PrintingTechnologyOfFilamentType
     printingTechnologyId    smallint    NOT NULL,
 
     UNIQUE (filamentTypeId, printingTechnologyId),
-    FOREIGN KEY (filamentTypeId) REFERENCES FilamentType (id),
-    FOREIGN KEY (printingTechnologyId) REFERENCES PrintingTechnology (id)
+    FOREIGN KEY (filamentTypeId) REFERENCES FilamentType (id) ON DELETE CASCADE,
+    FOREIGN KEY (printingTechnologyId) REFERENCES PrintingTechnology (id) ON DELETE CASCADE
 );

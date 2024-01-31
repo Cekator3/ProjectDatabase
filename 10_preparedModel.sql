@@ -10,7 +10,7 @@ CREATE TABLE PreparedModel
     height              integer     NOT NULL,
     isHoled             boolean     NOT NULL,
 
-    FOREIGN KEY (unpreparedModelId) REFERENCES UnpreparedModel(id)
+    FOREIGN KEY (unpreparedModelId) REFERENCES UnpreparedModel(id) ON DELETE CASCADE
 );
 
 -- Файл подготовленной модельки
@@ -22,5 +22,5 @@ CREATE TABLE PreparedModelFile
     file                text        NOT NULL,
     fileformat          text        NOT NULL,
 
-    FOREIGN KEY (preparedModelId) REFERENCES PreparedModel(id)
+    FOREIGN KEY (preparedModelId) REFERENCES PreparedModel(id) ON DELETE CASCADE
 );

@@ -12,6 +12,6 @@ CREATE TABLE UnpreparedModel
     -- Будут повторяться только столбцы baseModelId и BaseModelSizeId
     isParted            boolean     NOT NULL,
 
-    FOREIGN KEY (baseModelId) REFERENCES BaseModel(id),
-    FOREIGN KEY (baseModelSizeId) REFERENCES BaseModelSize(id)
+    FOREIGN KEY (baseModelId) REFERENCES BaseModel(id) ON DELETE CASCADE,
+    FOREIGN KEY (baseModelSizeId) REFERENCES BaseModelSize(id) ON DELETE RESTRICT
 );

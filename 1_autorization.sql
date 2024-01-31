@@ -30,5 +30,5 @@ CREATE TABLE Customer
     surname         text        NOT NULL,
     patronymic      text,
 
-    Foreign Key(userId) REFERENCES "User" (id)
+    Foreign Key(userId) REFERENCES "User" (id) ON DELETE CASCADE
 );

@@ -20,8 +20,8 @@ CREATE TABLE PrinterPrintingCharacteristic
     value                       integer     NOT NULL,
 
     UNIQUE (printerId, printingCharacteristicId),
-    FOREIGN KEY (printerId) REFERENCES Printer (id),
-    FOREIGN KEY (printingCharacteristicId) REFERENCES PrintingCharacteristic (id)
+    FOREIGN KEY (printerId) REFERENCES Printer (id) ON DELETE CASCADE,
+    FOREIGN KEY (printingCharacteristicId) REFERENCES PrintingCharacteristic (id) ON DELETE CASCADE
 );
 
 -- Технология печати принтера
@@ -32,6 +32,6 @@ CREATE TABLE PrinterPrintingTechnology
     printingTechnologyId        integer     NOT NULL,
 
     UNIQUE (printerId, printingTechnologyId),
-    FOREIGN KEY (printerId) REFERENCES Printer (id),
-    FOREIGN KEY (printingTechnologyId) REFERENCES PrintingTechnology (id)
+    FOREIGN KEY (printerId) REFERENCES Printer (id) ON DELETE CASCADE,
+    FOREIGN KEY (printingTechnologyId) REFERENCES PrintingTechnology (id) ON DELETE CASCADE
 );

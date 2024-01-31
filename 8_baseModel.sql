@@ -23,7 +23,7 @@ CREATE TABLE BaseModelSize
 
     UNIQUE (baseModelId, sizeMultiplier),
     UNIQUE (baseModelId, length, width, height),
-    FOREIGN KEY (baseModelId) REFERENCES BaseModel (id)
+    FOREIGN KEY (baseModelId) REFERENCES BaseModel (id) ON DELETE CASCADE
 );
 
 -- Поисковый тег базовой модельки
@@ -35,5 +35,5 @@ CREATE TABLE BaseModelSearchTag
     name                text        NOT NULL,
 
     UNIQUE (baseModelId, name),
-    FOREIGN KEY (baseModelId) REFERENCES BaseModel (id)
+    FOREIGN KEY (baseModelId) REFERENCES BaseModel (id) ON DELETE CASCADE
 );

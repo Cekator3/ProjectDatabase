@@ -25,6 +25,6 @@ CREATE TABLE PrintingTechnologyOfPostprocessingAdditionalService
     printingTechnologyId smallint               NOT NULL,
 
     UNIQUE (additionalServiceId, printingTechnologyId),
-    FOREIGN KEY (additionalServiceId) REFERENCES AdditionalService (id),
-    FOREIGN KEY (printingTechnologyId) REFERENCES PrintingTechnology (id)
+    FOREIGN KEY (additionalServiceId) REFERENCES AdditionalService (id) ON DELETE CASCADE,
+    FOREIGN KEY (printingTechnologyId) REFERENCES PrintingTechnology (id) ON DELETE CASCADE
 );

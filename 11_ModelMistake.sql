@@ -13,10 +13,11 @@ DROP TABLE IF EXISTS ModelMistake CASCADE;
 CREATE TABLE ModelMistake
 (
     id          integer     GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    userId      integer     NOT NULL,
+    userId      integer,
+    -- ГДЕ ССЫЛКА НА МОДЕЛЬКУ?
     image       text        NOT NULL,
     description text        NOT NULL,
     datetime    timestamptz NOT NULL,
 
-    FOREIGN KEY (userId) REFERENCES "User" (id)
+    FOREIGN KEY (userId) REFERENCES "User" (id) ON DELETE SET NULL
 )

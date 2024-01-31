@@ -16,7 +16,7 @@ CREATE TABLE PrintingTechnologyAdvantage
     technologyId    smallint    NOT NULL UNIQUE,
     description     text        NOT NULL,
 
-    FOREIGN KEY (technologyId) REFERENCES PrintingTechnology(id)
+    FOREIGN KEY (technologyId) REFERENCES PrintingTechnology(id) ON DELETE CASCADE
 );
 
 -- Недостатки технологий 3д-печати
@@ -27,7 +27,7 @@ CREATE TABLE PrintingTechnologyDisadvantage
     technologyId    smallint    NOT NULL UNIQUE,
     description     text        NOT NULL,
 
-    FOREIGN KEY (technologyId) REFERENCES PrintingTechnology(id)
+    FOREIGN KEY (technologyId) REFERENCES PrintingTechnology(id) ON DELETE CASCADE
 );
 
 DROP TYPE IF EXISTS PrintingCharacteristicType CASCADE;
@@ -48,5 +48,5 @@ CREATE TABLE PrintingCharacteristic
     name                    text                            NOT NULL,
     type                    PrintingCharacteristicType      NOT NULL,
 
-    FOREIGN KEY (printingTechnologyId) REFERENCES PrintingTechnology (id)
+    FOREIGN KEY (printingTechnologyId) REFERENCES PrintingTechnology (id) ON DELETE CASCADE
 );

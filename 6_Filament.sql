@@ -18,8 +18,8 @@ CREATE TABLE Filament
     amountReserved  integer     NOT NULL,
     amountFreeToUse integer     NOT NULL,
 
-    FOREIGN KEY (colorId) REFERENCES Color (id),
-    FOREIGN KEY (filamentTypeId) REFERENCES FilamentType (id)
+    FOREIGN KEY (colorId) REFERENCES Color (id) ON DELETE RESTRICT,
+    FOREIGN KEY (filamentTypeId) REFERENCES FilamentType (id) ON DELETE CASCADE
 );
 
 -- Характеристики печати филамента.
@@ -32,6 +32,6 @@ CREATE TABLE FilamentPrintingCharacteristic
     value                       integer     NOT NULL,
 
     UNIQUE (printingCharacteristicId, filamentId),
-    FOREIGN KEY (printingCharacteristicId) REFERENCES PrintingCharacteristic (id),
-    FOREIGN KEY (filamentId) REFERENCES Filament (id)
+    FOREIGN KEY (printingCharacteristicId) REFERENCES PrintingCharacteristic (id) ON DELETE CASCADE,
+    FOREIGN KEY (filamentId) REFERENCES Filament (id) ON DELETE CASCADE
 );
