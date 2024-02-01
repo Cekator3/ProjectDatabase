@@ -1,27 +1,27 @@
 -- Тип филамента
-DROP TABLE IF EXISTS FilamentType CASCADE;
-CREATE TABLE FilamentType
+DROP TABLE IF EXISTS filament_types CASCADE;
+CREATE TABLE filament_types
 (
-    id                  smallint    GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    name                text        NOT NULL UNIQUE,
-    description         text        NOT NULL,
-    strength            smallint    NOT NULL,
-    hardness            smallint    NOT NULL,
-    impactResistance    smallint    NOT NULL,
-    durability          smallint    NOT NULL,
-    minWorkTemperature  smallint    NOT NULL,
-    maxWorkTemperature  smallint    NOT NULL,
-    foodContactAllowed  boolean     NOT NULL
+    id                      smallint    GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name                    text        NOT NULL UNIQUE,
+    description             text        NOT NULL,
+    strength                smallint    NOT NULL,
+    hardness                smallint    NOT NULL,
+    impact_resistance       smallint    NOT NULL,
+    durability              smallint    NOT NULL,
+    min_work_temperature    smallint    NOT NULL,
+    max_work_temperature    smallint    NOT NULL,
+    food_contact_allowed    boolean     NOT NULL
 );
 
 -- Технология печати, в которой используется конкретный тип филамента.
-DROP TABLE IF EXISTS PrintingTechnologyOfFilamentType CASCADE;
-CREATE TABLE PrintingTechnologyOfFilamentType
+DROP TABLE IF EXISTS printing_technologies_of_filament_type CASCADE;
+CREATE TABLE printing_technologies_of_filament_type
 (
-    filamentTypeId          smallint    NOT NULL,
-    printingTechnologyId    smallint    NOT NULL,
+    filament_type_id          smallint    NOT NULL,
+    printing_technology_id    smallint    NOT NULL,
 
-    UNIQUE (filamentTypeId, printingTechnologyId),
-    FOREIGN KEY (filamentTypeId) REFERENCES FilamentType (id) ON DELETE CASCADE,
-    FOREIGN KEY (printingTechnologyId) REFERENCES PrintingTechnology (id) ON DELETE CASCADE
+    UNIQUE (filament_type_id, printing_technology_id),
+    FOREIGN KEY (filament_type_id) REFERENCES filament_types (id) ON DELETE CASCADE,
+    FOREIGN KEY (printing_technology_id) REFERENCES printing_technologies (id) ON DELETE CASCADE
 );

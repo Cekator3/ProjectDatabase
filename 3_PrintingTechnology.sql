@@ -1,37 +1,37 @@
 -- Технологии 3д-печати\
-DROP TABLE IF EXISTS PrintingTechnology CASCADE;
-CREATE TABLE PrintingTechnology
+DROP TABLE IF EXISTS printing_technologies CASCADE;
+CREATE TABLE printing_technologies
 (
     id              smallint    GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    fullName        text        NOT NULL UNIQUE,
-    shortName       text        NOT NULL UNIQUE,
+    full_name       text        NOT NULL UNIQUE,
+    short_name      text        NOT NULL UNIQUE,
     description     text        NOT NULL
 );
 
 -- Преимущества технологий 3д-печати
-DROP TABLE IF EXISTS PrintingTechnologyAdvantage CASCADE;
-CREATE TABLE PrintingTechnologyAdvantage
+DROP TABLE IF EXISTS printing_technology_advantages CASCADE;
+CREATE TABLE printing_technology_advantages
 (
     id              smallint    GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    technologyId    smallint    NOT NULL UNIQUE,
+    technology_id   smallint    NOT NULL UNIQUE,
     description     text        NOT NULL,
 
-    FOREIGN KEY (technologyId) REFERENCES PrintingTechnology(id) ON DELETE CASCADE
+    FOREIGN KEY (technology_id) REFERENCES printing_technologies(id) ON DELETE CASCADE
 );
 
 -- Недостатки технологий 3д-печати
-DROP TABLE IF EXISTS PrintingTechnologyDisadvantage CASCADE;
-CREATE TABLE PrintingTechnologyDisadvantage
+DROP TABLE IF EXISTS printing_technology_disadvantages CASCADE;
+CREATE TABLE printing_technology_disadvantages
 (
     id              smallint    GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    technologyId    smallint    NOT NULL UNIQUE,
+    technology_id   smallint    NOT NULL UNIQUE,
     description     text        NOT NULL,
 
-    FOREIGN KEY (technologyId) REFERENCES PrintingTechnology(id) ON DELETE CASCADE
+    FOREIGN KEY (technology_id) REFERENCES printing_technologies(id) ON DELETE CASCADE
 );
 
-DROP TYPE IF EXISTS PrintingCharacteristicType CASCADE;
-CREATE TYPE PrintingCharacteristicType AS ENUM
+DROP TYPE IF EXISTS printing_characteristic_type CASCADE;
+CREATE TYPE printing_characteristic_type AS ENUM
 (
     'boolean',
     'number'
@@ -40,13 +40,13 @@ CREATE TYPE PrintingCharacteristicType AS ENUM
 -- Вид характеристики печати.
 -- В каждой технологии печати свои характеристики на которые следует обращать внимание
 -- при выборе принтера для филамента.
-DROP TABLE IF EXISTS PrintingCharacteristic CASCADE;
-CREATE TABLE PrintingCharacteristic
+DROP TABLE IF EXISTS printing_characteristics CASCADE;
+CREATE TABLE printing_characteristics
 (
     id                      integer                         GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    printingTechnologyId    smallint                        NOT NULL,
+    printing_technology_id  smallint                        NOT NULL,
     name                    text                            NOT NULL,
-    type                    PrintingCharacteristicType      NOT NULL,
+    type                    printing_characteristic_type    NOT NULL,
 
-    FOREIGN KEY (printingTechnologyId) REFERENCES PrintingTechnology (id) ON DELETE CASCADE
+    FOREIGN KEY (printing_technology_id) REFERENCES printing_technologies (id) ON DELETE CASCADE
 );

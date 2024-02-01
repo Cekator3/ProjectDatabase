@@ -1,6 +1,6 @@
 -- Цвет
-DROP TABLE IF EXISTS Color CASCADE;
-CREATE TABLE Color
+DROP TABLE IF EXISTS colors CASCADE;
+CREATE TABLE colors
 (
     id              smallint    GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name            text        NOT NULL UNIQUE,
@@ -8,30 +8,30 @@ CREATE TABLE Color
 );
 
 -- Филамент
-DROP TABLE IF EXISTS Filament CASCADE;
-CREATE TABLE Filament
+DROP TABLE IF EXISTS filaments CASCADE;
+CREATE TABLE filaments
 (
-    id              integer     GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    name            text        NOT NULL UNIQUE,
-    filamentTypeId  smallint    NOT NULL,
-    colorId         smallint    NOT NULL,
-    amountReserved  integer     NOT NULL,
-    amountFreeToUse integer     NOT NULL,
+    id                  integer     GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name                text        NOT NULL UNIQUE,
+    filament_type_id    smallint    NOT NULL,
+    colorId             smallint    NOT NULL,
+    amount_reserved     integer     NOT NULL,
+    amount_free_to_use  integer     NOT NULL,
 
-    FOREIGN KEY (colorId) REFERENCES Color (id) ON DELETE RESTRICT,
-    FOREIGN KEY (filamentTypeId) REFERENCES FilamentType (id) ON DELETE CASCADE
+    FOREIGN KEY (colorId) REFERENCES colors (id) ON DELETE RESTRICT,
+    FOREIGN KEY (filament_type_id) REFERENCES filament_types (id) ON DELETE CASCADE
 );
 
 -- Характеристики печати филамента.
 -- Если принтер ей не соотвествует, то, по идее, он не может печатать этим филаментом.
-DROP TABLE IF EXISTS FilamentPrintingCharacteristic CASCADE;
-CREATE TABLE FilamentPrintingCharacteristic
+DROP TABLE IF EXISTS filament_printing_characteristics CASCADE;
+CREATE TABLE filament_printing_characteristics
 (
-    printingCharacteristicId    integer     NOT NULL,
-    filamentId                  integer     NOT NULL,
-    value                       integer     NOT NULL,
+    printing_characteristic_id    integer     NOT NULL,
+    filament_id                   integer     NOT NULL,
+    value                         integer     NOT NULL,
 
-    UNIQUE (printingCharacteristicId, filamentId),
-    FOREIGN KEY (printingCharacteristicId) REFERENCES PrintingCharacteristic (id) ON DELETE CASCADE,
-    FOREIGN KEY (filamentId) REFERENCES Filament (id) ON DELETE CASCADE
+    UNIQUE (printing_characteristic_id, filament_id),
+    FOREIGN KEY (printing_characteristic_id) REFERENCES printing_characteristics (id) ON DELETE CASCADE,
+    FOREIGN KEY (filament_id) REFERENCES filaments (id) ON DELETE CASCADE
 );
