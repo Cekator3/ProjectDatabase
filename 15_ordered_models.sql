@@ -3,6 +3,7 @@ DROP TYPE IF EXISTS ordered_model_printing_status CASCADE;
 CREATE TYPE ordered_model_printing_status AS ENUM
 (
     'needs_admin_checking',
+    'on_admin_checking',
     'needs_to_be_printed',
     'is_in_printer_queue',
     'is_being_printed',
