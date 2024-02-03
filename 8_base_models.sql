@@ -3,11 +3,12 @@ DROP TABLE IF EXISTS base_models CASCADE;
 CREATE TABLE base_models
 (
     id                  integer     GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    name                text        NOT NULL UNIQUE,
-    description         text        NOT NULL,
-    preview_image       text        NOT NULL,
-    file_3D_preview     text        NOT NULL,
-    file_model          text        NOT NULL
+    name                text        UNIQUE,
+    preview_image       text,
+    description         text,
+    file_3D_preview     text,
+    file_model          text        NOT NULL,
+    is_in_catalog       boolean     NOT NULL
 );
 
 -- Размер базовой модельки
@@ -35,5 +36,17 @@ CREATE TABLE base_model_search_tags
     name                text        NOT NULL,
 
     UNIQUE (base_model_id, name),
+    FOREIGN KEY (base_model_id) REFERENCES base_models (id) ON DELETE CASCADE
+);
+
+-- Изображение для галереи базовой модельки
+DROP TABLE IF EXISTS base_model_gallery_images CASCADE;
+CREATE TABLE base_model_gallery_images
+(
+    id                  integer     GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    base_model_id       integer     NOT NULL,
+    image               text        NOT NULL,
+
+    UNIQUE (base_model_id, image),
     FOREIGN KEY (base_model_id) REFERENCES base_models (id) ON DELETE CASCADE
 );

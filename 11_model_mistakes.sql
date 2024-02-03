@@ -3,7 +3,8 @@ DROP TYPE IF EXISTS model_mistake_type CASCADE;
 CREATE TYPE model_mistake_type AS ENUM
 (
     'base_model_mistake',
-    'unprepared_model_mistake',
+    'normal_unprepared_model_mistake',
+    'composite_unprepared_model_mistake',
     'prepared_model_mistake',
     'unknown_mistake'
 );
@@ -14,13 +15,14 @@ CREATE TABLE model_mistakes
 (
     id                      integer             GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     user_id                 integer,
-    base_model_id           integer             NOT NULL,
-    unprepared_model_id     integer,
-    prepared_model_id       integer,
     image                   text                NOT NULL,
     description             text                NOT NULL,
     type                    model_mistake_type  NOT NULL,
     datetime                timestamptz         NOT NULL,
+
+    base_model_id           integer             NOT NULL,
+    unprepared_model_id     integer,
+    prepared_model_id       integer,
 
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE SET NULL,
     FOREIGN KEY (base_model_id) REFERENCES base_models (id) ON DELETE CASCADE,
