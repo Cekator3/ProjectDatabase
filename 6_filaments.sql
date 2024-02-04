@@ -16,7 +16,7 @@ CREATE TABLE filaments
     filament_type_id    smallint    NOT NULL,
     colorId             smallint    NOT NULL,
     amount_reserved     integer     NOT NULL,
-    amount_free_to_use  integer     NOT NULL,
+    amount_total        integer     NOT NULL,
 
     FOREIGN KEY (colorId) REFERENCES colors (id) ON DELETE RESTRICT,
     FOREIGN KEY (filament_type_id) REFERENCES filament_types (id) ON DELETE CASCADE
