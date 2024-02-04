@@ -1,6 +1,6 @@
 -- Статус печати заказанной модельки
-DROP TYPE IF EXISTS ordered_model_printing_status CASCADE;
-CREATE TYPE ordered_model_printing_status AS ENUM
+DROP TYPE IF EXISTS ordered_model_completion_status CASCADE;
+CREATE TYPE ordered_model_completion_status AS ENUM
 (
     'needs_admin_checking',
     'on_admin_checking',
@@ -17,7 +17,6 @@ DROP TABLE iF EXISTS ordered_models CASCADE;
 CREATE TABLE ordered_models
 (
     id                      integer     GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    customer_id             integer     NOT NULL,
     order_id                integer     NOT NULL,
     customer_special_wishes text,
 
@@ -33,15 +32,21 @@ CREATE TABLE ordered_models
     color_id                smallint    NOT NULL,
 
     -- Печать модельки
-    printing_status         ordered_model_printing_status NOT NULL,
-    printer_id              integer,
+    -- При добавлении нескольких одинаковых моделек все
+    -- поля одинаковы, кроме completion_status.
+    -- Для оптимизации памяти
+    -- можно вынести completion_status в отдельную таблицу.
+    -- Но это усложнит SQL-запросы по получению
+    -- статуса завершённости модельки (нужен дополнительный JOIN).
+    completion_status         ordered_model_completion_status NOT NULL,
 
-    FOREIGN KEY (customer_id) REFERENCES users (id),
-    FOREIGN KEY (order_id) REFERENCES orders (id),
-    FOREIGN KEY (base_model_id) REFERENCES base_models (id),
-    FOREIGN KEY (base_model_size_id) REFERENCES base_model_sizes (id),
-    FOREIGN KEY (printing_technology_id) REFERENCES printing_technologies (id),
-    FOREIGN KEY (filament_type_id) REFERENCES filament_types (id),
-    FOREIGN KEY (color_id) REFERENCES colors (id),
-    FOREIGN KEY (printer_id) REFERENCES printers (id)
+    -- Если сохранять старые заказы, то нельзя будет удалять
+    -- модельки, их размеры, технологии печати, типы филаментов и цвета.
+    -- если их нужно сохранять, то нужно изменить ON DELETE-ы
+    FOREIGN KEY (order_id) REFERENCES orders (id) ON DELETE CASCADE,
+    FOREIGN KEY (base_model_id) REFERENCES base_models (id) ON DELETE RESTRICT,
+    FOREIGN KEY (base_model_size_id) REFERENCES base_model_sizes (id) ON DELETE RESTRICT,
+    FOREIGN KEY (printing_technology_id) REFERENCES printing_technologies (id) ON DELETE RESTRICT,
+    FOREIGN KEY (filament_type_id) REFERENCES filament_types (id) ON DELETE RESTRICT,
+    FOREIGN KEY (color_id) REFERENCES colors (id) ON DELETE RESTRICT
 );

@@ -9,7 +9,6 @@ CREATE TABLE prepared_models
     length                  integer     NOT NULL,
     width                   integer     NOT NULL,
     height                  integer     NOT NULL,
-    file_model              text        NOT NULL,
 
     UNIQUE (unprepared_model_id, is_holed),
     FOREIGN KEY (unprepared_model_id) REFERENCES unprepared_models (id) ON DELETE CASCADE

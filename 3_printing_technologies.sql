@@ -1,4 +1,4 @@
--- Технологии 3д-печати\
+-- Технологии 3д-печати
 DROP TABLE IF EXISTS printing_technologies CASCADE;
 CREATE TABLE printing_technologies
 (
@@ -8,27 +8,18 @@ CREATE TABLE printing_technologies
     description     text        NOT NULL
 );
 
--- Преимущества технологий 3д-печати
-DROP TABLE IF EXISTS printing_technology_advantages CASCADE;
-CREATE TABLE printing_technology_advantages
+-- Преимущества и недостатки технологий 3д-печати
+DROP TABLE IF EXISTS printing_technology_advantages_and_disadvantages CASCADE;
+CREATE TABLE printing_technology_advantages_and_disadvantages
 (
     id              smallint    GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     technology_id   smallint    NOT NULL UNIQUE,
+    is_advantage    boolean     NOT NULL,
     description     text        NOT NULL,
 
     FOREIGN KEY (technology_id) REFERENCES printing_technologies(id) ON DELETE CASCADE
 );
 
--- Недостатки технологий 3д-печати
-DROP TABLE IF EXISTS printing_technology_disadvantages CASCADE;
-CREATE TABLE printing_technology_disadvantages
-(
-    id              smallint    GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    technology_id   smallint    NOT NULL UNIQUE,
-    description     text        NOT NULL,
-
-    FOREIGN KEY (technology_id) REFERENCES printing_technologies(id) ON DELETE CASCADE
-);
 
 DROP TYPE IF EXISTS printing_characteristic_type CASCADE;
 CREATE TYPE printing_characteristic_type AS ENUM

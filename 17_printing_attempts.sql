@@ -10,10 +10,10 @@ CREATE TYPE printing_completion_status AS ENUM
 DROP TABLE IF EXISTS printing_attempts CASCADE;
 CREATE TABLE printing_attempts
 (
-    id                      bigint      GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    printer_id              integer     NOT NULL,
+    id                      bigint                      GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    printer_id              integer                     NOT NULL,
     printing_finished_at    timestamp,
-    status                  printing_completion_status NOT NULL,
+    status                  printing_completion_status  NOT NULL,
 
     FOREIGN KEY (printer_id) REFERENCES printers (id) ON DELETE CASCADE
 );

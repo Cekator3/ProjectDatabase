@@ -8,7 +8,9 @@ CREATE TABLE base_models
     description         text,
     file_3D_preview     text,
     file_model          text        NOT NULL,
-    is_in_catalog       boolean     NOT NULL
+    is_in_catalog       boolean     NOT NULL,
+    -- Количество удачных покупок этой модельки
+    sales_count         integer     NOT NULL
 );
 
 -- Размер базовой модельки

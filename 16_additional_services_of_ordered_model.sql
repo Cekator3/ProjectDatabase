@@ -6,6 +6,6 @@ CREATE TABLE additional_services_of_ordered_model
     additional_service_id   integer NOT NULL,
 
     UNIQUE (ordered_model_id, additional_service_id),
-    FOREIGN KEY (ordered_model_id) REFERENCES ordered_models (id),
-    FOREIGN KEY (additional_service_id) REFERENCES additional_services (id)
+    FOREIGN KEY (ordered_model_id) REFERENCES ordered_models (id) ON DELETE CASCADE,
+    FOREIGN KEY (additional_service_id) REFERENCES additional_services (id) ON DELETE RESTRICT
 );
