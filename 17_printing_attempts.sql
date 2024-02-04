@@ -1,4 +1,4 @@
-DROP TYPE IF EXISTS model_printing_completion_status CASCADE;
+DROP TYPE IF EXISTS printing_completion_status CASCADE;
 CREATE TYPE printing_completion_status AS ENUM
 (
     'printing_in_progress',
