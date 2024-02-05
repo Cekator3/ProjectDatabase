@@ -12,8 +12,8 @@ CREATE TABLE printing_attempts
 (
     id                      bigint                      GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     printer_id              integer                     NOT NULL,
-    printing_finished_at    timestamp,
     status                  printing_completion_status  NOT NULL,
+    printing_finished_at    timestamp,
 
     FOREIGN KEY (printer_id) REFERENCES printers (id) ON DELETE CASCADE
 );
@@ -24,7 +24,7 @@ CREATE TABLE printing_attempt_models
 (
     printing_attempt_id     integer     NOT NULL,
     ordered_model_id        integer     NOT NULL,
-    is_printed_successfully boolean     NOT NULL,
+    is_printed_successfully boolean,
 
     UNIQUE (printing_attempt_id, ordered_model_id),
     FOREIGN KEY (printing_attempt_id) REFERENCES printing_attempts (id) ON DELETE CASCADE,

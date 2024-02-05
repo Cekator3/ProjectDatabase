@@ -12,9 +12,9 @@ CREATE TABLE additional_services
 (
     id                  smallint                    GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name                text                        NOT NULL UNIQUE,
+    type                additional_service_type     NOT NULL,
     preview_image       text                        NOT NULL,
-    description         text                        NOT NULL,
-    type                additional_service_type     NOT NULL
+    description         text                        NOT NULL
 );
 
 -- Технологии печати, в которых применяется дополнительная услуга по постобработке

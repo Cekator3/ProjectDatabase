@@ -3,9 +3,9 @@ DROP TABLE IF EXISTS unprepared_models CASCADE;
 CREATE TABLE unprepared_models
 (
     id                  bigint      GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name                text        NOT NULL,
     base_model_id       integer     NOT NULL,
     base_model_size_id  integer     NOT NULL,
-    name                text        NOT NULL,
     preview_image       text        NOT NULL,
     is_parted           boolean     NOT NULL,
     part_number         smallint,

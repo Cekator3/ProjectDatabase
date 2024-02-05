@@ -13,10 +13,12 @@ DROP TABLE IF EXISTS users CASCADE;
 CREATE TABLE users
 (
     id              integer     GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    login           text        NOT NULL,
     role            user_role   NOT NULL,
-    login           text        NOT NULL UNIQUE,
     password        text        NOT NULL,
-    phone_number    text
+    phone_number    text,
+
+    UNIQUE (login, role)
 );
 
 -- Столбцы, относящиеся только к заказчику

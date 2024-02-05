@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS orders CASCADE;
 CREATE TABLE orders
 (
     id                      integer         GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    customer_id             integer         NOT NULL,
+    customer_id             integer         NOT NULL UNIQUE,
     status                  order_status    NOT NULL,
     payed_at                timestamp       NOT NULL,
 

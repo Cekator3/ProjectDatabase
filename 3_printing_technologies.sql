@@ -8,13 +8,23 @@ CREATE TABLE printing_technologies
     description     text        NOT NULL
 );
 
--- Преимущества и недостатки технологий 3д-печати
-DROP TABLE IF EXISTS printing_technology_advantages_and_disadvantages CASCADE;
-CREATE TABLE printing_technology_advantages_and_disadvantages
+-- Преимущества технологий 3д-печати
+DROP TABLE IF EXISTS printing_technology_advantages CASCADE;
+CREATE TABLE printing_technology_advantages
 (
     id              smallint    GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     technology_id   smallint    NOT NULL UNIQUE,
-    is_advantage    boolean     NOT NULL,
+    description     text        NOT NULL,
+
+    FOREIGN KEY (technology_id) REFERENCES printing_technologies(id) ON DELETE CASCADE
+);
+
+-- Недостатки технологий 3д-печати
+DROP TABLE IF EXISTS printing_technology_disadvantages CASCADE;
+CREATE TABLE printing_technology_disadvantages
+(
+    id              smallint    GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    technology_id   smallint    NOT NULL UNIQUE,
     description     text        NOT NULL,
 
     FOREIGN KEY (technology_id) REFERENCES printing_technologies(id) ON DELETE CASCADE
@@ -39,5 +49,6 @@ CREATE TABLE printing_characteristics
     name                    text                            NOT NULL,
     type                    printing_characteristic_type    NOT NULL,
 
+    UNIQUE (printing_technology_id, name),
     FOREIGN KEY (printing_technology_id) REFERENCES printing_technologies (id) ON DELETE CASCADE
 );

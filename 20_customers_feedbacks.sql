@@ -7,9 +7,9 @@ CREATE TABLE customer_model_feedbacks
     base_model_id       integer     NOT NULL,
     -- Если указан feedback_id, то это ответ к отзыву или к другому ответу.
     parent_feedback_id  integer,
-    created_ad          timestamptz NOT NULL,
     -- Только в отзывах можно указывать рейтинг модельки.
     rate                integer,
+    created_at          timestamptz NOT NULL,
     content             text        NOT NULL,
 
     FOREIGN KEY (base_model_id) REFERENCES base_models (id) ON DELETE CASCADE,

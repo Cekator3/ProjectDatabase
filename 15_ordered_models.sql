@@ -32,17 +32,10 @@ CREATE TABLE ordered_models
     color_id                smallint    NOT NULL,
 
     -- Печать модельки
-    -- При добавлении нескольких одинаковых моделек все
-    -- поля одинаковы, кроме completion_status.
-    -- Для оптимизации памяти
-    -- можно вынести completion_status в отдельную таблицу.
-    -- Но это усложнит SQL-запросы по получению
-    -- статуса завершённости модельки (нужен дополнительный JOIN).
-    completion_status         ordered_model_completion_status NOT NULL,
+    -- Если заказчик закаже несколько одинаковых моделек,
+    -- то поля у них будут одинаковы, кроме completion_status.
+    completion_status       ordered_model_completion_status     NOT NULL,
 
-    -- Если сохранять старые заказы, то нельзя будет удалять
-    -- модельки, их размеры, технологии печати, типы филаментов и цвета.
-    -- если их нужно сохранять, то нужно изменить ON DELETE-ы
     FOREIGN KEY (order_id) REFERENCES orders (id) ON DELETE CASCADE,
     FOREIGN KEY (base_model_id) REFERENCES base_models (id) ON DELETE RESTRICT,
     FOREIGN KEY (base_model_size_id) REFERENCES base_model_sizes (id) ON DELETE RESTRICT,
