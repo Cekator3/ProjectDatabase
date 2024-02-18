@@ -13,7 +13,7 @@ CREATE TABLE printing_attempts
     id                      bigint                      GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     printer_id              integer                     NOT NULL,
     status                  printing_completion_status  NOT NULL,
-    printing_finished_at    timestamp,
+    finished_at             timestamp,
 
     FOREIGN KEY (printer_id) REFERENCES printers (id) ON DELETE CASCADE
 );

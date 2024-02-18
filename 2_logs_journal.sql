@@ -4,7 +4,7 @@ CREATE TABLE application_events
 (
     id            bigint      GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     user_id       integer,
-    datetime      timestamp   NOT NULL,
+    created_at    timestamp   NOT NULL,
     type          text        NOT NULL,
     description   text        NOT NULL,
 

@@ -18,7 +18,7 @@ CREATE TABLE model_mistakes
     image                   text                NOT NULL,
     description             text                NOT NULL,
     type                    model_mistake_type  NOT NULL,
-    datetime                timestamptz         NOT NULL,
+    created_at              timestamptz         NOT NULL,
 
     base_model_id           integer             NOT NULL,
     unprepared_model_id     integer,

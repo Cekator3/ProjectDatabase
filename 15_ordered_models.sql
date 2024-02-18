@@ -18,7 +18,7 @@ CREATE TABLE ordered_models
 (
     id                      integer     GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     order_id                integer     NOT NULL,
-    customer_special_wishes text,
+    customer_special_wishes text        NOT NULL,
 
     -- На основе этих данных можно вычислить нужную
     -- подготовленную модельку

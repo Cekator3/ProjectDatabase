@@ -2,7 +2,7 @@
 DROP TYPE IF EXISTS order_status CASCADE;
 CREATE TYPE order_status AS ENUM
 (
-    'needs_checking'
+    'needs_checking',
     'on_checking',
     'waiting_for_payment',
     'on_execution',
@@ -36,13 +36,13 @@ CREATE TABLE orders
     receiver_patronymic     text,
 
     -- адрес доставки
-    delivery_method order_delivery_method   NOT NULL,
-    delivery_address_city text,
-    delivery_address_street text,
-    delivery_address_building_number text,
-    delivery_address_house_number text,
-    delivery_address_apartment_number text,
-    delivery_address_postal_code integer,
+    delivery_method                     order_delivery_method   NOT NULL,
+    delivery_address_city               text,
+    delivery_address_street             text,
+    delivery_address_building_number    text,
+    delivery_address_house_number       text,
+    delivery_address_apartment_number   text,
+    delivery_address_postal_code        integer,
 
     FOREIGN KEY (customer_id) REFERENCES users (id) ON DELETE CASCADE
 );

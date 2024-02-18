@@ -6,7 +6,7 @@ CREATE TABLE base_models
     name                text        UNIQUE,
     preview_image       text,
     description         text,
-    file_3D_preview     text,
+    file_3d_preview     text,
     file_model          text        NOT NULL,
     is_in_catalog       boolean     NOT NULL,
     -- Количество удачных покупок этой модельки
@@ -17,12 +17,12 @@ CREATE TABLE base_models
 DROP TABlE IF EXISTS base_model_sizes CASCADE;
 CREATE TABLE base_model_sizes
 (
-    id                  integer     GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    base_model_id       integer     NOT NULL,
-    size_multiplier     real        NOT NULL,
-    length              integer     NOT NULL,
-    width               integer     NOT NULL,
-    height              integer     NOT NULL,
+    id                  integer             GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    base_model_id       integer             NOT NULL,
+    size_multiplier     double precision    NOT NULL,
+    length              integer             NOT NULL,
+    width               integer             NOT NULL,
+    height              integer             NOT NULL,
 
     UNIQUE (base_model_id, size_multiplier),
     UNIQUE (base_model_id, length, width, height),

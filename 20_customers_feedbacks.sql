@@ -17,8 +17,8 @@ CREATE TABLE customer_model_feedbacks
     FOREIGN KEY (parent_feedback_id) REFERENCES customer_model_feedbacks(id) ON DELETE CASCADE
 );
 
-DROP TABLE IF EXISTS feedback_photos CASCADE;
-CREATE TABLE feedback_photos
+DROP TABLE IF EXISTS model_feedback_photos CASCADE;
+CREATE TABLE model_feedback_photos
 (
     feedback_id integer NOT NULL,
     photo text NOT NULL,
