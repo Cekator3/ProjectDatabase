@@ -25,7 +25,7 @@ CREATE TABLE users
 DROP TABLE IF EXISTS customers CASCADE;
 CREATE TABLE customers
 (
-    user_id          integer     NOT NULL UNIQUE,
+    user_id          integer     PRIMARY KEY,
     profile_picture  text        NOT NULL,
     email            text        NOT NULL UNIQUE,
     name             text        NOT NULL,

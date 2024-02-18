@@ -2,6 +2,7 @@
 DROP TABLE IF EXISTS printer_distributing_models;
 CREATE TABLE printer_distributing_models
 (
+    id                  integer     GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     user_id             integer     NOT NULL,
     ordered_model_id    integer     NOT NULL,
 

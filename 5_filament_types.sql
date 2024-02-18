@@ -18,6 +18,7 @@ CREATE TABLE filament_types
 DROP TABLE IF EXISTS printing_technologies_of_filament_type CASCADE;
 CREATE TABLE printing_technologies_of_filament_type
 (
+    id                        smallint    GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     filament_type_id          smallint    NOT NULL,
     printing_technology_id    smallint    NOT NULL,
 

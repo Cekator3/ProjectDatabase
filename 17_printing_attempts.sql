@@ -22,7 +22,8 @@ CREATE TABLE printing_attempts
 DROP TABLE IF EXISTS printing_attempt_models CASCADE;
 CREATE TABLE printing_attempt_models
 (
-    printing_attempt_id     integer     NOT NULL,
+    id                      bigint      GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    printing_attempt_id     bigint      NOT NULL,
     ordered_model_id        integer     NOT NULL,
     is_printed_successfully boolean,
 
@@ -35,7 +36,8 @@ CREATE TABLE printing_attempt_models
 DROP TABLE IF EXISTS printing_attempt_filaments CASCADE;
 CREATE TABLE printing_attempt_filaments
 (
-    printing_attempt_id     integer     NOT NULL,
+    id                      bigint      GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    printing_attempt_id     bigint      NOT NULL,
     filament_id             integer     NOT NULL,
 
     UNIQUE (printing_attempt_id, filament_id),

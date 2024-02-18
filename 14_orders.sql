@@ -51,8 +51,9 @@ CREATE TABLE orders
 DROP TABLE IF EXISTS customer_acquired_models CASCADE;
 CREATE TABLE customer_acquired_models
 (
-    customer_id             integer NOT NULL,
-    base_model_id           integer NOT NULL,
+    id                      integer     GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    customer_id             integer     NOT NULL,
+    base_model_id           integer     NOT NULL,
 
     UNIQUE (customer_id, base_model_id),
     FOREIGN KEY (customer_id) REFERENCES users (id) ON DELETE CASCADE,

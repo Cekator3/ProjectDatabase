@@ -16,6 +16,7 @@ CREATE TABLE printers
 DROP TABLE IF EXISTS printer_printing_characteristics CASCADE;
 CREATE TABLE printer_printing_characteristics
 (
+    id                          integer     GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     printer_id                  integer     NOT NULL,
     printing_characteristic_id  integer     NOT NULL,
     value                       integer     NOT NULL,
@@ -29,6 +30,7 @@ CREATE TABLE printer_printing_characteristics
 DROP TABLE IF EXISTS printer_printing_technologies CASCADE;
 CREATE TABLE printer_printing_technologies
 (
+    id                           integer     GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     printer_id                   integer     NOT NULL,
     printing_technology_id       integer     NOT NULL,
 

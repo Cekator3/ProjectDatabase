@@ -27,6 +27,7 @@ CREATE TABLE filaments
 DROP TABLE IF EXISTS filament_printing_characteristics CASCADE;
 CREATE TABLE filament_printing_characteristics
 (
+    id                            integer     GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     printing_characteristic_id    integer     NOT NULL,
     filament_id                   integer     NOT NULL,
     value                         integer     NOT NULL,

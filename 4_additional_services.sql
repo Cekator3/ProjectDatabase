@@ -21,6 +21,7 @@ CREATE TABLE additional_services
 DROP TABLE IF EXISTS printing_technologies_of_postprocessing_additional_service CASCADE;
 CREATE TABLE printing_technologies_of_postprocessing_additional_service
 (
+    id                      smallint               GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     additional_service_id   smallint               NOT NULL,
     printing_technology_id  smallint               NOT NULL,
 

@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS filaments_amounts_to_print_models;
 CREATE TABLE filaments_amounts_to_print_models
 (
+    id                  bigint      GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     filament_type_id    smallint    NOT NULL,
     prepared_model_id   bigint      NOT NULL,
     amount              integer     NOT NULL,

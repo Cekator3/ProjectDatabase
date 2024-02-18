@@ -20,8 +20,9 @@ CREATE TABLE customer_model_feedbacks
 DROP TABLE IF EXISTS model_feedback_photos CASCADE;
 CREATE TABLE model_feedback_photos
 (
-    feedback_id integer NOT NULL,
-    photo text NOT NULL,
+    id              integer     GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    feedback_id     integer     NOT NULL,
+    photo           text        NOT NULL,
 
     UNIQUE (feedback_id, photo),
     FOREIGN KEY (feedback_id) REFERENCES customer_model_feedbacks(id) ON DELETE CASCADE
