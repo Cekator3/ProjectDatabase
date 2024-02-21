@@ -16,21 +16,12 @@ CREATE TABLE users
     login           text        NOT NULL,
     role            user_role   NOT NULL,
     password        text        NOT NULL,
-    phone_number    text,
+    phone_number    text        UNIQUE,
+    profile_picture text,
+    email           text        UNIQUE,
+    name            text,
+    surname         text,
+    patronymic      text,
 
     UNIQUE (login, role)
-);
-
--- Столбцы, относящиеся только к заказчику
-DROP TABLE IF EXISTS customers CASCADE;
-CREATE TABLE customers
-(
-    user_id          integer     PRIMARY KEY,
-    profile_picture  text        NOT NULL,
-    email            text        NOT NULL UNIQUE,
-    name             text        NOT NULL,
-    surname          text,
-    patronymic       text,
-
-    Foreign Key (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
