@@ -14,7 +14,7 @@ CREATE TABLE users
 (
     id              integer                 GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     remember_token  character varying(100),
-    login           text                    NOT NULL,
+    login           text                    NOT NULL UNIQUE,
     role            user_role               NOT NULL,
     password        text                    NOT NULL,
     phone_number    text                    UNIQUE,
@@ -22,7 +22,5 @@ CREATE TABLE users
     profile_picture text,
     name            text,
     surname         text,
-    patronymic      text,
-
-    UNIQUE (login, role)
+    patronymic      text
 );
