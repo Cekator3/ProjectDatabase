@@ -2,14 +2,17 @@
 DROP TABLE IF EXISTS prepared_models CASCADE;
 CREATE TABLE prepared_models
 (
-    id                      bigint      GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    unprepared_model_id     bigint      NOT NULL UNIQUE,
-    preview_image           text        NOT NULL,
-    length                  integer     NOT NULL,
-    width                   integer     NOT NULL,
-    height                  integer     NOT NULL,
+    id                                  bigint  GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    unprepared_model_id                 bigint  NOT NULL,
+    unprepared_composite_model_part_id  bigint,
+    preview_image                       text    NOT NULL,
+    length                              integer NOT NULL,
+    width                               integer NOT NULL,
+    height                              integer NOT NULL,
 
-    FOREIGN KEY (unprepared_model_id) REFERENCES unprepared_models (id) ON DELETE CASCADE
+    UNIQUE (unprepared_model_id, unprepared_composite_model_part_id),
+    FOREIGN KEY (unprepared_model_id) REFERENCES unprepared_models (id) ON DELETE CASCADE,
+    FOREIGN KEY (unprepared_composite_model_part_id) REFERENCES unprepared_composite_model_parts (id) ON DELETE CASCADE
 );
 
 -- Файл подготовленной модельки
