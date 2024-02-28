@@ -21,9 +21,9 @@ CREATE TABLE model_mistakes
     created_at                          timestamptz         NOT NULL,
 
     base_model_id                       integer             NOT NULL,
-    unprepared_model_id                 integer,
+    unprepared_model_id                 bigint,
     unprepared_composite_model_part_id  bigint,
-    prepared_model_id                   integer,
+    prepared_model_id                   bigint,
 
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE SET NULL,
     FOREIGN KEY (base_model_id) REFERENCES base_models (id) ON DELETE CASCADE,
