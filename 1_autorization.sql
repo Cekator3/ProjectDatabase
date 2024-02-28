@@ -12,15 +12,17 @@ CREATE TYPE user_role AS ENUM
 DROP TABLE IF EXISTS users CASCADE;
 CREATE TABLE users
 (
-    id              integer                 GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    remember_token  character varying(100),
-    login           text                    NOT NULL UNIQUE,
-    role            user_role               NOT NULL,
-    password        text                    NOT NULL,
-    phone_number    text                    UNIQUE,
-    email           text                    UNIQUE,
-    profile_picture text,
-    name            text,
-    surname         text,
-    patronymic      text
+    id                          integer                 GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    remember_token              character varying(100),
+    login                       text                    NOT NULL UNIQUE,
+    role                        user_role               NOT NULL,
+    password                    text                    NOT NULL,
+    phone_number                text                    UNIQUE,
+    email                       text                    UNIQUE,
+    email_verified_at           timestamp,
+    phone_number_verified_at    timestamp,
+    profile_picture             text,
+    name                        text,
+    surname                     text,
+    patronymic                  text
 );
