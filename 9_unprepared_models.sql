@@ -23,6 +23,8 @@ CREATE TABLE unprepared_composite_model_parts
 (
     id                  bigint      GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     unprepared_model_id bigint      NOT NULL,
+    name                text        NOT NULL,
+    preview_image       text        NOT NULL,
     subpart_number      smallint    NOT NULL,
     file_model          text        NOT NULL,
 
